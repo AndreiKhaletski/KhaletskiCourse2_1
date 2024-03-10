@@ -32,21 +32,5 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter(PASSWORD_PARAMETR);
 
         writer.write(iLoginService.loginChech(login, password, resp, req));
-
-
-        // Проверка учетных данных пользователя
-        // (в базе данных создать метод проверки? Тогда вызываем не метод iLoginService)
-//        UserAccount userAccount = iLoginService.loginChech(login, password);
-
-//        if (iLoginService.loginChech(login, password, resp) != null) {
-//            // Если учетные данные верны, сохраняем информацию о пользователе в сессию
-//            HttpSession session = req.getSession(true);
-//            session.setAttribute("user", iLoginService.loginChech(login, password, resp));
-////            // Отправляем ответ, что вход выполнен успешно
-////            writer.write("Вход выполнен успешно.");
-////        }else {
-////            // Если учетные данные неверны, отправляем ошибку
-////             writer.write("Неверный логин или пароль.");
-//        }
     }
 }

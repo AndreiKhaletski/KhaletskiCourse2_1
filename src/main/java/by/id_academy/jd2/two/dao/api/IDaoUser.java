@@ -9,5 +9,4 @@ public interface IDaoUser {
     void saveUser(UserAccount userAccount);
     Map<String, UserAccount> getInformation();
 
-//    ArrayList<String> list();
 }

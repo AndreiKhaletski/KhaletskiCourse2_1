@@ -22,7 +22,6 @@ public class DaoUser implements IDaoUser {
 
     @Override
     public void saveUser(UserAccount userAccount) {
-//        this.information.compute(userAccount, (k, v) -> v != null ? v + 1 : 1);
         information.put(userAccount.getLogin(), userAccount);
     }
 
@@ -30,16 +29,4 @@ public class DaoUser implements IDaoUser {
     public Map<String, UserAccount> getInformation() {
         return information;
     }
-    //    private final ArrayList<String> listAccount = new ArrayList<>();
-//    @Override
-//    public void AccoutUser(UserAccount userAccount) {
-//        listAccount.add(userAccount.getLogin());
-//        listAccount.add(userAccount.getPassword());
-//    }
-//
-//    @Override
-//public ArrayList<String> list(){
-//
-//    return listAccount;
-//}
 }

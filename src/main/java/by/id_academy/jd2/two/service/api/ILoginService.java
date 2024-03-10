@@ -6,8 +6,4 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public interface ILoginService {
     String loginChech(String login, String password, HttpServletResponse resp, HttpServletRequest req);
-//    UserAccount loginChech(String login, String password);
-
-//    public String ViewLogin ();
-
 }

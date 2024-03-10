@@ -26,17 +26,6 @@ public class UserServlet extends HttpServlet {
     private final static String ROLE_NAME_USER_PARAMETR = "role";
 
     IUserService iUserService = new UserService();
-
-//    @Override
-//    public void init(ServletConfig config) throws ServletException {
-//        iUserService.AccoutUser(new UserAccount(
-//                "admin",
-//                "admin",
-//                "Админ Админович",
-//                "01.01.1985"
-//        ));
-//    }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -50,9 +39,6 @@ public class UserServlet extends HttpServlet {
         String fullName = Arrays.toString(req.getParameterValues(FULL_NAME_USER_PARAMETR));
         String date = Arrays.toString(req.getParameterValues(DATA_NAME_USER_PARAMETR));
         String role = req.getParameter(ROLE_NAME_USER_PARAMETR);
-
-//        HttpSession httpSession = req.getSession(false);
-//        if(httpSession == null) {
 
             iUserService.AccoutUser(new UserAccount(login, password, fullName, date, role), login, resp);
             writer.write("Вы успешно зарегистрировались!");
