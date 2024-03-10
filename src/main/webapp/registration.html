@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="en-RU">
+<head>
+    <meta charset="utf-8">
+    <title>Регистрация</title>
+</head>
+<body>
+<form action="http://127.0.0.1:8080/registration-1.0-SNAPSHOT/user" method="post">
+    <p><b><strong>Пожалуйста, заполните обязательные поля для регистрации.</strong></b></p>
+    <p>Логин:
+        <label>
+            <input maxlength="10" size="20" name="login">
+        </label></p>
+    <p>Пароль:
+        <label>
+            <input type="password" maxlength="10" size="20" name="password">
+        </label></p>
+    <p>Введите информацию о себе:</p>
+    <p>Фамилия: <label>
+        <input type="text" name="fullName">
+    </label></p>
+    <p>Имя: <label>
+        <input type="text" name="fullName">
+    </label></p>
+    <p>Отчество: <label>
+        <input type="text" name="fullName">
+    </label></p>
+    <p><label for="date">Дата рождения:</label>
+        <input type="date" id="date" name="date"></p>
+    <p><label>Роль:</label>
+        <label>
+            <select name="role">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+        </label>
+    </p>
+    <p><input type="submit" value="Зарегистрироваться"></p>
+</form>
+</body>
+</html>
