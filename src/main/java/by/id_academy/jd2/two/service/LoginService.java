@@ -20,7 +20,10 @@ public class LoginService implements ILoginService {
 
         UserAccount user = iDaoUser.getInformation().get(login);
 
+        //Проверяем, если ли в базе уже юзер с таким логином. Если нет, то перенаправление на страницу ошибки с дальнейшим перенаправлением на страницу регистрации.
         if (user != null) {
+
+        //Далее проверка на правильность ввода пароля. Если нет, то ошибка по паролю.
             if (Objects.equals(user.getPassword(), password)) {
 
                 HttpSession session = req.getSession(true);
@@ -43,6 +46,8 @@ public class LoginService implements ILoginService {
                 return "Ошибка перенаправления пользователя на страницу.";
             }
         }
+
+    //Вывод информации через StringBuilder
         return builder.toString();
     }
 }
