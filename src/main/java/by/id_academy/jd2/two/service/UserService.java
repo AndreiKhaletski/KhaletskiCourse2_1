@@ -18,11 +18,13 @@ public class UserService implements IUserService {
     @Override
     public void AccoutUser(UserAccount userAccount, String login, HttpServletResponse resp) throws IOException {
 
+    //Проверяем, зарегистрирован ли пользователь с таким же логином. Если имеется, то перенаправление на другую страницу.
         if(iDaoUser.getInformation().get(login) == null){
+            
+    //Проверяем на роль пользователя
             if (Objects.equals(userAccount.getRole(), "user")){
-                //Устанавливаем дату регистрации в поле DateRegistration объекта
+     //Устанавливаем дату регистрации в поле DateRegistration объекта и сохраняем объект с ключом (логин)
                 userAccount.setDateRegistration(date.toString());
-                //
                 this.iDaoUser.saveUser(userAccount);
             }
         }else{
