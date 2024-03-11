@@ -17,7 +17,8 @@ public class LoginService implements ILoginService {
     public String loginChech(String login, String password, HttpServletResponse resp, HttpServletRequest req) {
 
         StringBuilder builder = new StringBuilder();
-
+        
+        //Получаем по ключу(ЛОГИН) информацию о существующем объекте.
         UserAccount user = iDaoUser.getInformation().get(login);
 
         //Проверяем, если ли в базе уже юзер с таким логином. Если нет, то перенаправление на страницу ошибки с дальнейшим перенаправлением на страницу регистрации.
