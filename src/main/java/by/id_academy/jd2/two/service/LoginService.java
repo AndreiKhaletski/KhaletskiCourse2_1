@@ -26,6 +26,7 @@ public class LoginService implements ILoginService {
         //Далее проверка на правильность ввода пароля. Если нет, то ошибка по паролю.
             if (Objects.equals(user.getPassword(), password)) {
 
+        //Сохраняем в сессию
                 HttpSession session = req.getSession(true);
                 session.setAttribute("user", user);
 
