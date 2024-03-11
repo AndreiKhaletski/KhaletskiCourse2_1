@@ -20,6 +20,7 @@ public class DaoUser implements IDaoUser {
         )));
     }
 
+//Сохраняем пользователя по ключу(логин) и зачению(объект)
     @Override
     public void saveUser(UserAccount userAccount) {
         information.put(userAccount.getLogin(), userAccount);
