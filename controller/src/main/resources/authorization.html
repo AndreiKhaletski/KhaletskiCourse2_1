@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html lang="en-RU">
+<head>
+    <meta charset="utf-8">
+    <title>Авторизация</title>
+</head>
+<body>
+<form action="http://127.0.0.1:8080/controller-1.0-SNAPSHOT/login" method="post">
+    <p><strong>Авторизуйтесь или зарегистрируйтесь</strong></p>
+    <p><strong>Логин:</strong>
+        <label>
+            <input maxlength="10" size="20" name="login">
+        </label></p>
+    <p><strong>Пароль:</strong>
+        <label>
+            <input type="password" maxlength="10" size="20" name="password">
+        </label></p>
+    <p><input type="submit" value="Авторизоваться"></p>
+    <input type="button" value="Зарегистрироваться" onClick='location.href="http://localhost:63342/registration/src/main/webapp/registration.html"'>
+</form>
+</body>
+</html>
