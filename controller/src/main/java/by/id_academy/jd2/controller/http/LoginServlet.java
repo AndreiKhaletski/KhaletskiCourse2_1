@@ -38,7 +38,6 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = req.getSession(true);
             session.setAttribute("user", user);
 
-//            writer.write("<p>Вы вошли под своим логином и паролем</p>");
             resp.sendRedirect("userAccount.html");
 
         } else {

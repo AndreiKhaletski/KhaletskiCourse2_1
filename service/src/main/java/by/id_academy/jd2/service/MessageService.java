@@ -35,7 +35,7 @@ public class MessageService implements IMessageService {
 
         StringBuilder builder = new StringBuilder();
 
-        Map<String, Message> map = userDao.getMapMessage();
+//        Map<String, Message> map = userDao.getMapMessage();
 
         String sender = userDao
                 .getMapMessage()
@@ -47,7 +47,7 @@ public class MessageService implements IMessageService {
                 .get(currentUser.getLogin())
                 .getText();
 
-        for (Map.Entry<String, Message> entry : map.entrySet()) {
+        for (Map.Entry<String, Message> entry : userDao.getMapMessage().entrySet()) {
             String key = entry.getKey();
             if (Objects.equals(key, currentUser.getLogin())){
                 builder.append("Сообщение от: ").append(sender).append(" | Текст: ").append(text);
