@@ -1,12 +1,13 @@
 package by.id_academy.jd2.service;
 
-import by.id_academy.jd2.dao.DaoUser;
 import by.id_academy.jd2.dao.api.IDaoUser;
-import by.id_academy.jd2.dto.Message;
+import by.id_academy.jd2.dto.MessageDTO;
 import by.id_academy.jd2.dto.UserDTO;
 import by.id_academy.jd2.service.api.IMessageService;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -19,7 +20,7 @@ public class MessageService implements IMessageService {
     }
 
     @Override
-    public void recipient(Message message, String currentUser) {
+    public void recipient(MessageDTO message, String currentUser) {
 
         if (userDao.getMapUser().get(message.getRecipient()) != null){
             message.setSender(currentUser);
@@ -31,35 +32,34 @@ public class MessageService implements IMessageService {
     }
 
     @Override
-    public String messageDisplay(UserDTO currentUser) {
+    public List<String> messageDisplay(UserDTO currentUser) {
 
-        StringBuilder builder = new StringBuilder();
+        List<String> listCommentsAndAddresses = new ArrayList<>();
 
-//        Map<String, Message> map = userDao.getMapMessage();
+        String sender;
+        String text;
 
-        String sender = userDao
-                .getMapMessage()
-                .get(currentUser.getLogin())
-                .getSender();
-
-        String text = userDao
-                .getMapMessage()
-                .get(currentUser.getLogin())
-                .getText();
-
-        for (Map.Entry<String, Message> entry : userDao.getMapMessage().entrySet()) {
+        for (Map.Entry<String, MessageDTO> entry : userDao.getMapMessage().entrySet()) {
             String key = entry.getKey();
+            sender = userDao
+                    .getMapMessage()
+                    .get(currentUser.getLogin())
+                    .getSender();
+            text = userDao
+                    .getMapMessage()
+                    .get(currentUser.getLogin())
+                    .getText();
             if (Objects.equals(key, currentUser.getLogin())){
-                builder.append("Сообщение от: ").append(sender).append(" | Текст: ").append(text);
-//                messages.add("Сообщение от: " + sender + " | Текст: " + text);
+                listCommentsAndAddresses.add("Сообщение от: " + sender + " | Текст: " + text);
             }else{
                 throw new IllegalArgumentException("Сообщений нет");
             }
         }
 
-//       userDao.getMapMessage().get(currentUser.getLogin());
+//        for (Message message : userDao.getMapMessage().values()) {
+//            list.add("От: " + message.getSender() + ", Текст: " + message.getText());
+//        }
 
-
-        return builder.toString();
+        return listCommentsAndAddresses;
     }
 }

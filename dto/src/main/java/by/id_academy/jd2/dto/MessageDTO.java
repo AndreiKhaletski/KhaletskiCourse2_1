@@ -1,12 +1,12 @@
 package by.id_academy.jd2.dto;
 
-public class Message {
+public class MessageDTO {
     private String sendingDataTime;
     private String sender;
     private String recipient;
     private String text;
 
-    public Message(String recipient, String text) {
+    public MessageDTO(String recipient, String text) {
         this.recipient = recipient;
         this.text = text;
     }

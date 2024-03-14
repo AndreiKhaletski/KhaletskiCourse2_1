@@ -1,8 +1,7 @@
 package by.id_academy.jd2.controller.http;
 
-import by.id_academy.jd2.dto.Message;
+import by.id_academy.jd2.dto.MessageDTO;
 import by.id_academy.jd2.dto.UserDTO;
-import by.id_academy.jd2.service.MessageService;
 import by.id_academy.jd2.service.api.IMessageService;
 import by.id_academy.jd2.service.factory.ServiceFactory;
 import jakarta.servlet.ServletException;
@@ -30,7 +29,7 @@ public class MessageServlet extends HttpServlet {
         HttpSession session = req.getSession();
         UserDTO currentUser = (UserDTO) session.getAttribute("user");
 
-        writer.write(iMessageService.messageDisplay(currentUser));
+        writer.write(iMessageService.messageDisplay(currentUser).toString());
     }
 
     @Override
@@ -46,7 +45,7 @@ public class MessageServlet extends HttpServlet {
 
         if (!Objects.equals(recipient, "")) {
             if (!Objects.equals(text, "")) {
-                iMessageService.recipient(new Message(recipient, text), currentUser.getLogin());
+                iMessageService.recipient(new MessageDTO(recipient, text), currentUser.getLogin());
                 writer.write("Ваше сообщение отправлено пользователю: " + recipient);
             } else {
                 writer.write("Пустое сообщение не может быть отправлено");
