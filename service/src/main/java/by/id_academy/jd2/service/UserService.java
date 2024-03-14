@@ -24,7 +24,7 @@ public class UserService implements IUserService {
             throw new IllegalArgumentException("Пароль не может быть пустым");
         }
 
-        if (userDao.getMap().get(login) == null) {
+        if (userDao.getMapUser().get(login) == null) {
             if (Objects.equals(userDTO.getRole(), "user")) {
                 userDTO.setDateRegistration(String.valueOf(LocalDateTime.now()));
                 this.userDao.saveUser(userDTO);

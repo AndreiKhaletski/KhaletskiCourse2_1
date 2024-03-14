@@ -1,11 +1,14 @@
 package by.id_academy.jd2.dao.api;
 
+import by.id_academy.jd2.dto.Message;
 import by.id_academy.jd2.dto.UserDTO;
 
 import java.util.Map;
 
 public interface IDaoUser {
     void saveUser(UserDTO userDTO);
-    Map<String, UserDTO> getMap();
+    Map<String, UserDTO> getMapUser();
 
+    void saveMessage(Message message);
+    Map<String, Message> getMapMessage();
 }

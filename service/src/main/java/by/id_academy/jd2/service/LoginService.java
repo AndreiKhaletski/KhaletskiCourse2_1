@@ -14,10 +14,10 @@ public class LoginService implements ILoginService {
     @Override
     public UserDTO loginChech(String login) {
 
-        if (loginDao.getMap().get(login) == null){
+        if (loginDao.getMapUser().get(login) == null){
             throw new IllegalArgumentException("Такого пользователя нет.");
         }else{
-            return loginDao.getMap().get(login);
+            return loginDao.getMapUser().get(login);
         }
     }
 }
