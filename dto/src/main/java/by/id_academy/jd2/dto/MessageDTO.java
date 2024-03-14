@@ -1,6 +1,9 @@
 package by.id_academy.jd2.dto;
 
+import java.util.Objects;
+
 public class MessageDTO {
+
     private String sendingDataTime;
     private String sender;
     private String recipient;
@@ -42,4 +45,17 @@ public class MessageDTO {
     public void setText(String text) {
         this.text = text;
     }
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        MessageDTO that = (MessageDTO) o;
+//        return Objects.equals(sender, that.sender) && Objects.equals(text, that.text);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(sender, text);
+//    }
 }
