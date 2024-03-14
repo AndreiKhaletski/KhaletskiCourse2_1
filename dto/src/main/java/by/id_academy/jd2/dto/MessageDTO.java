@@ -1,7 +1,5 @@
 package by.id_academy.jd2.dto;
 
-import java.util.Objects;
-
 public class MessageDTO {
 
     private String sendingDataTime;
