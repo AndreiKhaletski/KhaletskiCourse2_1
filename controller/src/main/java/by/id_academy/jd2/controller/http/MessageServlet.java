@@ -13,6 +13,8 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @WebServlet(name = "Message", urlPatterns = "/message")
@@ -29,7 +31,17 @@ public class MessageServlet extends HttpServlet {
         HttpSession session = req.getSession();
         UserDTO currentUser = (UserDTO) session.getAttribute("user");
 
-        writer.write(iMessageService.messageDisplay(currentUser).toString());
+        List<String> listCommentsAndAddresses = new ArrayList<>();
+
+        for (MessageDTO message : iMessageService.messageDisplay(currentUser)) {
+            listCommentsAndAddresses.add(
+                    "<p>" + "Сообщение от: " + message.getSender()
+                            + " | Текст: " + message.getText()
+                            + " | Время отправки: " + message.getSendingDataTime() + "</p>"
+            );
+        }
+
+        writer.write(listCommentsAndAddresses.toString());
     }
 
     @Override

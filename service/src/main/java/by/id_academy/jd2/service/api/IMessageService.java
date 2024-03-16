@@ -8,5 +8,5 @@ import java.util.List;
 public interface IMessageService {
 
     public void recipient(MessageDTO message, String currentUser);
-    public List<String> messageDisplay(UserDTO currentUser);
+    public List<MessageDTO> messageDisplay(UserDTO currentUser);
 }

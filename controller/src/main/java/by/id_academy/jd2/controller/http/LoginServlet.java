@@ -31,18 +31,10 @@ public class LoginServlet extends HttpServlet {
         String login = req.getParameter(LOGIN_PARAMETR);
         String password = req.getParameter(PASSWORD_PARAMETR);
 
-        UserDTO user = iLoginService.loginChech(login);
+        HttpSession session = req.getSession(true);
+        session.setAttribute("user", iLoginService.loginChech(login, password));
 
-        if (Objects.equals(user.getPassword(), password)) {
-
-            HttpSession session = req.getSession(true);
-            session.setAttribute("user", user);
-
-            resp.sendRedirect("userAccount.html");
-
-        } else {
-            writer.write("<p>Вы ввели неверный пароль...");
-        }
+        resp.sendRedirect("userAccount.html");
     }
 }
 

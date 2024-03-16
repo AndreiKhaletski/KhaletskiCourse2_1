@@ -4,6 +4,8 @@ import by.id_academy.jd2.dao.api.IDaoUser;
 import by.id_academy.jd2.service.api.ILoginService;
 import by.id_academy.jd2.dto.UserDTO;
 
+import java.util.Objects;
+
 public class LoginService implements ILoginService {
     private final IDaoUser loginDao;
 
@@ -12,12 +14,14 @@ public class LoginService implements ILoginService {
     }
 
     @Override
-    public UserDTO loginChech(String login) {
+    public UserDTO loginChech(String login, String password) {
 
-        if (loginDao.getMapUser().get(login) == null){
+        UserDTO user = loginDao.getMapUser().get(login);
+        if (user == null) {
             throw new IllegalArgumentException("Такого пользователя нет.");
-        }else{
-            return loginDao.getMapUser().get(login);
+        } else if (!Objects.equals(user.getPassword(), password)) {
+            throw new IllegalArgumentException("Неверный пароль.");
         }
+        return user;
     }
 }

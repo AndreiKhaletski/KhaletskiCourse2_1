@@ -30,21 +30,9 @@ public class MessageService implements IMessageService {
     }
 
     @Override
-    public List<String> messageDisplay(UserDTO currentUser) {
-
-        List<String> listCommentsAndAddresses = new ArrayList<>();
-
-        List<MessageDTO> objects = userDao
+    public List<MessageDTO> messageDisplay(UserDTO currentUser) {
+        return userDao
                 .getMapMessage()
                 .get(currentUser.getLogin());
-
-        for (MessageDTO message : objects) {
-            listCommentsAndAddresses.add(
-                    "Сообщение от: " + message.getSender()
-                            + " | Текст: " + message.getText()
-                            + " | Время отправки: " + message.getSendingDataTime()
-            );
-        }
-        return listCommentsAndAddresses;
     }
 }
