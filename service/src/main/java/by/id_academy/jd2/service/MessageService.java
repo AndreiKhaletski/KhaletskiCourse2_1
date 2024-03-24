@@ -31,8 +31,6 @@ public class MessageService implements IMessageService {
 
     @Override
     public List<MessageDTO> messageDisplay(UserDTO currentUser) {
-        return userDao
-                .getMapMessage()
-                .get(currentUser.getLogin());
+        return userDao.getMapMessage(currentUser);
     }
 }

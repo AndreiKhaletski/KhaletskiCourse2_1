@@ -1,4 +1,4 @@
-package by.id_academy.jd2.controller.http;
+package by.id_academy.jd2.controller.http.api;
 
 import by.id_academy.jd2.service.api.ILoginService;
 import by.id_academy.jd2.service.factory.ServiceFactory;
@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Objects;
 
-@WebServlet(name = "login", urlPatterns = "/login")
+@WebServlet(name = "login", urlPatterns = "/api/login")
 public class LoginServlet extends HttpServlet {
     private final static String LOGIN_PARAMETR = "login";
     private final static String PASSWORD_PARAMETR = "password";
@@ -22,9 +22,6 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        req.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html; charset=UTF-8");
 
         PrintWriter writer = resp.getWriter();
 
@@ -34,7 +31,18 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = req.getSession(true);
         session.setAttribute("user", iLoginService.loginChech(login, password));
 
-        resp.sendRedirect("userAccount.html");
+        //Исправить!
+//        resp.sendRedirect("userAccount.html");
+
+        String contextPath = req.getContextPath();
+        String basePath = "";
+        if(!contextPath.isBlank()){
+            basePath += contextPath;
+        }
+
+        req.setAttribute("basePath", basePath);
+
+        req.getRequestDispatcher("/template/user/message.jsp").forward(req, resp);
     }
 }
 

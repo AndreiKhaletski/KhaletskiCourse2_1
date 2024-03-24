@@ -1,4 +1,4 @@
-package by.id_academy.jd2.controller.http;
+package by.id_academy.jd2.controller.http.api;
 
 import by.id_academy.jd2.service.api.IUserService;
 import by.id_academy.jd2.service.factory.ServiceFactory;
@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
-@WebServlet(name = "User", urlPatterns = "/user")
+@WebServlet(name = "User", urlPatterns = "/api/user")
 public class UserServlet extends HttpServlet {
 
     private final static String LOGIN_USER_PARAMETR = "login";
@@ -27,9 +27,6 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html; charset=UTF-8");
-
         PrintWriter writer = resp.getWriter();
 
         String login = req.getParameter(LOGIN_USER_PARAMETR);
@@ -38,7 +35,7 @@ public class UserServlet extends HttpServlet {
         String date = Arrays.toString(req.getParameterValues(DATA_NAME_USER_PARAMETR));
         String role = req.getParameter(ROLE_NAME_USER_PARAMETR);
 
-            iUserService.accoutUser(new UserDTO(login, password, fullName, date, role), login);
-            writer.write("Вы успешно зарегистрировались!");
+        iUserService.accoutUser(new UserDTO(login, password, fullName, date, role), login);
+        writer.write("Вы успешно зарегистрировались!");
     }
 }

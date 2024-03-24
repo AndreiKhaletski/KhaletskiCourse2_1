@@ -5,4 +5,8 @@
          metadata-complete="false"
          version="6.0">
 
+    <welcome-file-list>
+        <welcome-file>template/login.jsp</welcome-file>
+    </welcome-file-list>
+
 </web-app>

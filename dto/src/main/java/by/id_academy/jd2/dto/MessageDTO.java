@@ -1,7 +1,13 @@
 package by.id_academy.jd2.dto;
 
-public class MessageDTO {
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@ToString
+public class MessageDTO {
     private String sendingDataTime;
     private String sender;
     private String recipient;
@@ -11,49 +17,5 @@ public class MessageDTO {
         this.recipient = recipient;
         this.text = text;
     }
-
-    public String getSendingDataTime() {
-        return sendingDataTime;
-    }
-
-    public void setSendingDataTime(String sendingDataTime) {
-        this.sendingDataTime = sendingDataTime;
-    }
-
-    public String getSender() {
-        return sender;
-    }
-
-    public void setSender(String sender) {
-        this.sender = sender;
-    }
-
-    public String getRecipient() {
-        return recipient;
-    }
-
-    public void setRecipient(String recipient) {
-        this.recipient = recipient;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        MessageDTO that = (MessageDTO) o;
-//        return Objects.equals(sender, that.sender) && Objects.equals(text, that.text);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(sender, text);
-//    }
 }
+

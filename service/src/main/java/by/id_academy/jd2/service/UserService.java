@@ -25,12 +25,12 @@ public class UserService implements IUserService {
         }
 
         if (userDao.getMapUser().get(login) == null) {
-            if (Objects.equals(userDTO.getRole(), "user")) {
+//            if (Objects.equals(userDTO.getRole(), "user")) {
                 userDTO.setDateRegistration(String.valueOf(LocalDateTime.now()));
                 this.userDao.saveUser(userDTO);
-            }else {
-                throw new IllegalArgumentException("Необходимо регистрироваться под ролью User");
-            }
+//            }else {
+//                throw new IllegalArgumentException("Необходимо регистрироваться под ролью User");
+//            }
         }else{
             throw new IllegalArgumentException("Пользователь с таким логином уже зарегистрирован");
         }

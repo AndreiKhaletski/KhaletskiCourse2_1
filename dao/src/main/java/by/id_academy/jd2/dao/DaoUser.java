@@ -4,10 +4,7 @@ import by.id_academy.jd2.dao.api.IDaoUser;
 import by.id_academy.jd2.dto.MessageDTO;
 import by.id_academy.jd2.dto.UserDTO;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class DaoUser implements IDaoUser {
     private static final Map<String, UserDTO> mapAccounts = new HashMap<>();
@@ -47,7 +44,17 @@ public class DaoUser implements IDaoUser {
     }
 
     @Override
-    public Map<String, List<MessageDTO>> getMapMessage() {
-        return mapMessages;
+    public int getQuantityUsers() {
+        return mapAccounts.size();
+    }
+
+    @Override
+    public List<MessageDTO> getMapMessage(UserDTO currentUser){
+        return mapMessages.get(currentUser.getLogin());
+    }
+
+    @Override
+    public Collection<List<MessageDTO>> getQuantityMessage() {
+        return mapMessages.values();
     }
 }

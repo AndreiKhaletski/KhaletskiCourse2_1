@@ -1,4 +1,4 @@
-package by.id_academy.jd2.controller.http;
+package by.id_academy.jd2.controller.http.api;
 
 import by.id_academy.jd2.dto.MessageDTO;
 import by.id_academy.jd2.dto.UserDTO;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@WebServlet(name = "Message", urlPatterns = "/message")
+@WebServlet(name = "Message", urlPatterns = "/api/message")
 public class MessageServlet extends HttpServlet {
     private final static String SENDER_DOPOST_PARAMETR = "recipienthtml";
     private final static String TEXT_DOPOST_PARAMETR = "texthtml";
@@ -31,17 +31,21 @@ public class MessageServlet extends HttpServlet {
         HttpSession session = req.getSession();
         UserDTO currentUser = (UserDTO) session.getAttribute("user");
 
-        List<String> listCommentsAndAddresses = new ArrayList<>();
+//        ArrayList<Object> listCommentsAndAddresses = new ArrayList<>();
 
-        for (MessageDTO message : iMessageService.messageDisplay(currentUser)) {
-            listCommentsAndAddresses.add(
-                    "<p>" + "Сообщение от: " + message.getSender()
-                            + " | Текст: " + message.getText()
-                            + " | Время отправки: " + message.getSendingDataTime() + "</p>"
-            );
+        List<MessageDTO> messages = iMessageService.messageDisplay(currentUser);
+
+        String contextPath = req.getContextPath();
+        String basePath = "";
+        if(!contextPath.isBlank()){
+            basePath += contextPath;
         }
 
-        writer.write(listCommentsAndAddresses.toString());
+        req.setAttribute("basePath", basePath);
+
+        req.setAttribute("message", messages);
+
+        req.getRequestDispatcher("/template/user/chats.jsp").forward(req, resp);
     }
 
     @Override
