@@ -18,14 +18,12 @@ import java.util.List;
 
 @WebServlet(name = "statistics", urlPatterns = "/api/admin/statistics")
 public class StatisticServlet extends HttpServlet {
-    ISessionChangeListener sessionChangeListener = new SessionChangeListener();
-    IStatisticService statisticService = new StatisticService();
+    private ISessionChangeListener sessionChangeListener = new SessionChangeListener();
+    private IStatisticService statisticService = new StatisticService();
     private int countMessage = 0;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-//        PrintWriter writer = resp.getWriter();
 
         String activeUsers = String.valueOf(sessionChangeListener.getCount());
         String quantityUsers = String.valueOf(statisticService.getUsers());
@@ -38,9 +36,6 @@ public class StatisticServlet extends HttpServlet {
         }
 
         String quantityMessages = String.valueOf(countMessage);
-//        writer.write("<p>" + "Количество активных пользователей: " + activeUsers + "</p>");
-//        writer.write("<p>" + "Количество пользователей в приложении: " + quantityUsers + "</p>");
-//        writer.write("Количество сообщений отправленных в приложении: " + quantityMessages);
 
         String contextPath = req.getContextPath();
         String basePath = "";

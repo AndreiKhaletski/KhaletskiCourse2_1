@@ -23,16 +23,11 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        PrintWriter writer = resp.getWriter();
-
         String login = req.getParameter(LOGIN_PARAMETR);
         String password = req.getParameter(PASSWORD_PARAMETR);
 
         HttpSession session = req.getSession(true);
         session.setAttribute("user", iLoginService.loginChech(login, password));
-
-        //Исправить!
-//        resp.sendRedirect("userAccount.html");
 
         String contextPath = req.getContextPath();
         String basePath = "";

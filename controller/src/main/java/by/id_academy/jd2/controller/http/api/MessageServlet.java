@@ -26,12 +26,8 @@ public class MessageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        PrintWriter writer = resp.getWriter();
-
         HttpSession session = req.getSession();
         UserDTO currentUser = (UserDTO) session.getAttribute("user");
-
-//        ArrayList<Object> listCommentsAndAddresses = new ArrayList<>();
 
         List<MessageDTO> messages = iMessageService.messageDisplay(currentUser);
 
