@@ -19,7 +19,6 @@ public class UserSecurityFilter implements Filter {
         if((session!=null) && (session.getAttribute("user") !=null)) {
             chain.doFilter(request, response);
         } else {
-            //редирект на логин
             res.sendRedirect(contextPath + "/template/signLogin.jsp");
         }
     }

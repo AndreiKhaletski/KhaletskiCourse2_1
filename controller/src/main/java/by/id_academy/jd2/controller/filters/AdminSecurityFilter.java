@@ -1,5 +1,6 @@
 package by.id_academy.jd2.controller.filters;
 
+import by.id_academy.jd2.dto.UserDTO;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,9 +17,11 @@ public class AdminSecurityFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
         String contextPath = req.getContextPath();
         HttpSession session = req.getSession();
-        if((session!=null) && (session.getAttribute("user") !=null)) {
-            //...напишите проверку что пользователь является админом
-            chain.doFilter(request, response);
+        if ((session != null) && (session.getAttribute("user") != null)) {
+            UserDTO user = (UserDTO) session.getAttribute("user");
+            if ("admin".equals(user.getRole())) {
+                chain.doFilter(request, response);
+            }
         } else {
             //переадресация на логин
             res.sendRedirect(contextPath + "/template/signLogin.jsp");
