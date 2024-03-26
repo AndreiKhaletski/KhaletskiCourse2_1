@@ -2,6 +2,7 @@ package by.id_academy.jd2.dao;
 
 import by.id_academy.jd2.dao.api.IDaoLayer;
 import by.id_academy.jd2.dto.MessageDTO;
+import by.id_academy.jd2.dto.Role;
 import by.id_academy.jd2.dto.UserDTO;
 
 import java.util.*;
@@ -17,14 +18,14 @@ public class DaoLayer implements IDaoLayer {
                 "admin",
                 "Админ Админович",
                 "01.01.1985",
-                "admin"
+                Role.ADMIN
         )));
         accounts.put("andy", (new UserDTO(
                 "adny",
                 "andy",
                 "Халецкий Андрей Михайлович",
                 "21.08.1995",
-                "user"
+                Role.USER
         )));
     }
 

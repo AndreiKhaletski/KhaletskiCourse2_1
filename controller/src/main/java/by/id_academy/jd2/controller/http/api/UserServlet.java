@@ -1,5 +1,6 @@
 package by.id_academy.jd2.controller.http.api;
 
+import by.id_academy.jd2.dto.Role;
 import by.id_academy.jd2.service.api.IUserService;
 import by.id_academy.jd2.service.factory.ServiceFactory;
 import by.id_academy.jd2.dto.UserDTO;
@@ -33,7 +34,7 @@ public class UserServlet extends HttpServlet {
         String password = req.getParameter(PASSWORD_USER_PARAMETR);
         String fullName = Arrays.toString(req.getParameterValues(FULL_NAME_USER_PARAMETR));
         String date = Arrays.toString(req.getParameterValues(DATA_NAME_USER_PARAMETR));
-        String role = req.getParameter(ROLE_NAME_USER_PARAMETR);
+        Role role = Role.valueOf(req.getParameter(ROLE_NAME_USER_PARAMETR));
 
         iUserService.accoutUser(new UserDTO(login, password, fullName, date, role), login);
         writer.write("Вы успешно зарегистрировались!");

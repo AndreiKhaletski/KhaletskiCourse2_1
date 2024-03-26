@@ -1,4 +1,4 @@
-package by.id_academy.jd2.controller.http.ui;
+package by.id_academy.jd2.controller.http.ui.user;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,9 +8,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/ui/signLogin")
-public class LoginServlet extends HttpServlet {
-
+@WebServlet("/ui/user/message")
+public class MessageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -22,6 +21,8 @@ public class LoginServlet extends HttpServlet {
 
         req.setAttribute("basePath", basePath);
 
-        req.getRequestDispatcher("/template/signLogin.jsp").forward(req, resp);
+        req.getRequestDispatcher("/template/user/message.jsp").forward(req, resp);
+
+
     }
 }

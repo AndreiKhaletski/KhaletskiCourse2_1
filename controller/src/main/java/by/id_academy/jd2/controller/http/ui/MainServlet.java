@@ -8,8 +8,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/ui/signLogin")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/ui")
+public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,6 +22,6 @@ public class LoginServlet extends HttpServlet {
 
         req.setAttribute("basePath", basePath);
 
-        req.getRequestDispatcher("/template/signLogin.jsp").forward(req, resp);
+        req.getRequestDispatcher("/template/index.jsp").forward(req, resp);
     }
 }

@@ -15,9 +15,9 @@ public class UserDTO {
     private String fullname;
     private String date;
     private LocalDate dateRegistration;
-    private String role;
+    private Role role;
 
-    public UserDTO(String login, String password, String fullname, String date, String role) {
+    public UserDTO(String login, String password, String fullname, String date, Role role) {
         this.login = login;
         this.password = password;
         this.fullname = fullname;

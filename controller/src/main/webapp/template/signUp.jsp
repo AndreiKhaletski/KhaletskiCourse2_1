@@ -21,8 +21,8 @@
             <input type="date" id="date" name="date"></p>
         <p><label>Роль:</label>
             <select name="role">
-                <option value="user">User</option>
-                <option value="admin">Admin</option>
+                <option value="USER">User</option>
+                <option value="ADMIN">Admin</option>
             </select>
         </p>
         <p><input type="submit" value="Зарегистрироваться"></p>
