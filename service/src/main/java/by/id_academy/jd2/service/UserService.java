@@ -1,17 +1,18 @@
 package by.id_academy.jd2.service;
 
-import by.id_academy.jd2.dao.api.IDaoUser;
+import by.id_academy.jd2.dao.api.IDaoLayer;
 import by.id_academy.jd2.service.api.IUserService;
 import by.id_academy.jd2.dto.UserDTO;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class UserService implements IUserService {
-    private final IDaoUser userDao;
+    private final IDaoLayer daoLayer;
 
-    public UserService(IDaoUser userDao) {
-        this.userDao = userDao;
+    public UserService(IDaoLayer daoLayer) {
+        this.daoLayer = daoLayer;
     }
 
     @Override
@@ -23,16 +24,10 @@ public class UserService implements IUserService {
         if (Objects.equals(userDTO.getPassword(), "")){
             throw new IllegalArgumentException("Пароль не может быть пустым");
         }
-
-        if (userDao.getMapUser().get(login) == null) {
-//            if (Objects.equals(userDTO.getRole(), "user")) {
-                userDTO.setDateRegistration(String.valueOf(LocalDateTime.now()));
-                this.userDao.saveUser(userDTO);
-//            }else {
-//                throw new IllegalArgumentException("Необходимо регистрироваться под ролью User");
-//            }
-        }else{
+        if (daoLayer.getLoginUser(login) != null) {
             throw new IllegalArgumentException("Пользователь с таким логином уже зарегистрирован");
         }
+
+        this.daoLayer.saveUser(userDTO);
     }
 }

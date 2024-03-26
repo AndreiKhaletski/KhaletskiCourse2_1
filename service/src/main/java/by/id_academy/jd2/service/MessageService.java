@@ -1,29 +1,28 @@
 package by.id_academy.jd2.service;
 
-import by.id_academy.jd2.dao.api.IDaoUser;
+import by.id_academy.jd2.dao.api.IDaoLayer;
 import by.id_academy.jd2.dto.MessageDTO;
 import by.id_academy.jd2.dto.UserDTO;
 import by.id_academy.jd2.service.api.IMessageService;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MessageService implements IMessageService {
 
-    private final IDaoUser userDao;
+    private final IDaoLayer daoLayer;
 
-    public MessageService(IDaoUser userDao) {
-        this.userDao = userDao;
+    public MessageService(IDaoLayer daoLayer) {
+        this.daoLayer = daoLayer;
     }
 
     @Override
     public void recipient(MessageDTO message, String currentUser) {
 
-        if (userDao.getMapUser().get(message.getRecipient()) != null) {
+        if (daoLayer.getRecipient(message) != null) {
             message.setSender(currentUser);
             message.setSendingDataTime(String.valueOf(LocalDateTime.now()));
-            userDao.saveMessage(message);
+            daoLayer.saveMessage(message);
         } else {
             throw new IllegalArgumentException("Такого пользователя нет!");
         }
@@ -31,6 +30,6 @@ public class MessageService implements IMessageService {
 
     @Override
     public List<MessageDTO> messageDisplay(UserDTO currentUser) {
-        return userDao.getMapMessage(currentUser);
+        return daoLayer.getMessageUsers(currentUser);
     }
 }

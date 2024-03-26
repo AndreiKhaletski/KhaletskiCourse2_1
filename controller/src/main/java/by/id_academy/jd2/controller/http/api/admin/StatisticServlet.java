@@ -1,10 +1,10 @@
 package by.id_academy.jd2.controller.http.api.admin;
 
 import by.id_academy.jd2.controller.listeners.SessionChangeListener;
-import by.id_academy.jd2.controller.listeners.api.ISessionChangeListener;
 import by.id_academy.jd2.dto.MessageDTO;
 import by.id_academy.jd2.service.StatisticService;
 import by.id_academy.jd2.service.api.IStatisticService;
+import by.id_academy.jd2.service.factory.ServiceFactory;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -18,24 +18,14 @@ import java.util.List;
 
 @WebServlet(name = "statistics", urlPatterns = "/api/admin/statistics")
 public class StatisticServlet extends HttpServlet {
-    private ISessionChangeListener sessionChangeListener = new SessionChangeListener();
-    private IStatisticService statisticService = new StatisticService();
-    private int countMessage = 0;
+    private IStatisticService statisticService = ServiceFactory.getStatisticService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String activeUsers = String.valueOf(sessionChangeListener.getCount());
-        String quantityUsers = String.valueOf(statisticService.getUsers());
-
-        Collection<List<MessageDTO>> allLists = statisticService.getMessages();
-        for (List<MessageDTO> messages : allLists) {
-            for (MessageDTO message : messages) {
-                countMessage++;
-            }
-        }
-
-        String quantityMessages = String.valueOf(countMessage);
+        int activeUsers = statisticService.getActiveUsers();
+        int quantityUsers = statisticService.getUsers();
+        int quantityMessages = statisticService.getMessages();
 
         String contextPath = req.getContextPath();
         String basePath = "";

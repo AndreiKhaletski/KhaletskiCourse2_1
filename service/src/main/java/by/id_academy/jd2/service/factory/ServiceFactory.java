@@ -3,46 +3,56 @@ package by.id_academy.jd2.service.factory;
 import by.id_academy.jd2.dao.factory.DaoFactory;
 import by.id_academy.jd2.service.LoginService;
 import by.id_academy.jd2.service.MessageService;
+import by.id_academy.jd2.service.StatisticService;
 import by.id_academy.jd2.service.UserService;
-import by.id_academy.jd2.service.api.ILoginService;
-import by.id_academy.jd2.service.api.IMessageService;
-import by.id_academy.jd2.service.api.IUserService;
+import by.id_academy.jd2.service.api.*;
 
 public class ServiceFactory {
-    private volatile static ILoginService iLoginService;
-    private volatile static IUserService iUserService;
-    private volatile static IMessageService iMessageService;
+    private volatile static ILoginService loginService;
+    private volatile static IUserService userService;
+    private volatile static IMessageService messageService;
+    private volatile static IStatisticService statisticService;
 
     public static IMessageService getMessageService(){
-        if(iMessageService == null){
+        if(messageService == null){
             synchronized (ServiceFactory.class){
-                if(iMessageService == null){
-                    iMessageService = new MessageService(DaoFactory.getUserDao());
+                if(messageService == null){
+                    messageService = new MessageService(DaoFactory.getUserDao());
                 }
             }
         }
-        return iMessageService;
+        return messageService;
     }
 
     public static ILoginService getLoginService(){
-        if(iLoginService == null){
+        if(loginService == null){
             synchronized (ServiceFactory.class){
-                if(iLoginService == null){
-                    iLoginService = new LoginService(DaoFactory.getUserDao());
+                if(loginService == null){
+                    loginService = new LoginService(DaoFactory.getUserDao());
                 }
             }
         }
-        return iLoginService;
+        return loginService;
     }
 
     public static IUserService getUserService(){
-        if(iUserService == null){
+        if(userService == null){
             synchronized (ServiceFactory.class){
-                if(iUserService == null){
-                    iUserService = new UserService(DaoFactory.getUserDao());
+                if(userService == null){
+                    userService = new UserService(DaoFactory.getUserDao());
                 }
             }
         }
-        return iUserService;
+        return userService;
+    }
+    public static IStatisticService getStatisticService(){
+        if(statisticService == null){
+            synchronized (ServiceFactory.class){
+                if(statisticService == null){
+                    statisticService = new StatisticService(DaoFactory.getUserDao());
+                }
+            }
+        }
+        return statisticService;
     }
 }

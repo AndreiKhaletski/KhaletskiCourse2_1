@@ -1,19 +1,19 @@
 package by.id_academy.jd2.dao.factory;
 
-import by.id_academy.jd2.dao.DaoUser;
-import by.id_academy.jd2.dao.api.IDaoUser;
+import by.id_academy.jd2.dao.DaoLayer;
+import by.id_academy.jd2.dao.api.IDaoLayer;
 
 public class DaoFactory {
-    private volatile static IDaoUser iDaoUser;
+    private volatile static IDaoLayer iDaoLayer;
 
-    public static IDaoUser getUserDao(){
-        if(iDaoUser == null){
+    public static IDaoLayer getUserDao(){
+        if(iDaoLayer == null){
             synchronized (DaoFactory.class){
-                if(iDaoUser == null){
-                    iDaoUser = new DaoUser();
+                if(iDaoLayer == null){
+                    iDaoLayer = new DaoLayer();
                 }
             }
         }
-        return iDaoUser;
+        return iDaoLayer;
     }
 }
