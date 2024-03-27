@@ -7,6 +7,22 @@ import java.util.List;
 
 public interface IMessageService {
 
+    /*
+     * Метод проверяет проверяет
+     * зарегистрирован ли принимающий
+     * сообщение пользователь
+     *
+     * @param message
+     * @param currentUser
+     */
     public void recipient(MessageDTO message, String currentUser);
+
+    /*
+     * Метод возвращает лист сообщений
+     * для текущего пользователя
+     *
+     * @param currentUser
+     * @return
+     */
     public List<MessageDTO> messageDisplay(UserDTO currentUser);
 }
