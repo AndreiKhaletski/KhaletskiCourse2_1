@@ -14,7 +14,7 @@ public class DaoMessages implements IDaoMessages {
 
     @Override
     public UserDTO getRecipient(MessageDTO message) {
-        return userDao.accounts().get(message.getRecipient());
+        return userDao.getRecipientIsAccounts(message);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package by.id_academy.jd2.dao;
 
 import by.id_academy.jd2.dao.api.IDaoUser;
+import by.id_academy.jd2.dto.MessageDTO;
 import by.id_academy.jd2.dto.Role;
 import by.id_academy.jd2.dto.UserDTO;
 
@@ -42,7 +43,7 @@ public class DaoUser implements IDaoUser {
     }
 
     @Override
-    public Map<String, UserDTO> accounts(){
-        return accounts;
+    public UserDTO getRecipientIsAccounts(MessageDTO message){
+        return accounts.get(message.getRecipient());
     }
 }
