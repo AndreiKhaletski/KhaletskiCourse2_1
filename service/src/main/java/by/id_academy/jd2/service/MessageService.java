@@ -20,7 +20,6 @@ public class MessageService implements IMessageService {
 
         if (daoMessages.getRecipient(message) != null) {
             message.setSender(currentUser);
-            message.setSendingDataTime(String.valueOf(LocalDateTime.now()));
             daoMessages.saveMessage(message);
         } else {
             throw new IllegalArgumentException("Такого пользователя нет!");
