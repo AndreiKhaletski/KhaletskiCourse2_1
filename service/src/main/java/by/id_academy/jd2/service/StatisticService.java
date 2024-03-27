@@ -28,15 +28,9 @@ public class StatisticService implements IStatisticService {
 
     @Override
     public int getMessages(){
-
-        int countMessage = 0;
-        Collection<List<MessageDTO>> allLists = daoMessages.getQuantityMessage();
-        for (List<MessageDTO> messages : allLists) {
-            for (MessageDTO message : messages) {
-                countMessage++;
-            }
-        }
-        return countMessage;
+        return daoMessages.getQuantityMessage().stream()
+                .mapToInt(List::size)
+                .sum();
     }
 
     @Override
