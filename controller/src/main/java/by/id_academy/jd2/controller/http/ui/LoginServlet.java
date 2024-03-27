@@ -21,7 +21,6 @@ public class LoginServlet extends HttpServlet {
         }
 
         req.setAttribute("basePath", basePath);
-
         req.getRequestDispatcher("/template/signLogin.jsp").forward(req, resp);
     }
 }

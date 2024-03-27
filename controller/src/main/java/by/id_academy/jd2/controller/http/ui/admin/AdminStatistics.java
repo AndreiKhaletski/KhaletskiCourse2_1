@@ -20,8 +20,6 @@ public class AdminStatistics extends HttpServlet {
         }
 
         req.setAttribute("basePath", basePath);
-
         req.getRequestDispatcher("/api/admin/statistics").forward(req, resp);
-
     }
 }

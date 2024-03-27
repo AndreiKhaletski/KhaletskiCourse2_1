@@ -17,7 +17,7 @@ public class ServiceFactory {
         if(messageService == null){
             synchronized (ServiceFactory.class){
                 if(messageService == null){
-                    messageService = new MessageService(DaoFactory.getUserDao());
+                    messageService = new MessageService(DaoFactory.getMessageDao());
                 }
             }
         }
@@ -45,11 +45,12 @@ public class ServiceFactory {
         }
         return userService;
     }
+
     public static IStatisticService getStatisticService(){
         if(statisticService == null){
             synchronized (ServiceFactory.class){
                 if(statisticService == null){
-                    statisticService = new StatisticService(DaoFactory.getUserDao());
+                    statisticService = new StatisticService(DaoFactory.getMessageDao(), DaoFactory.getUserDao(), DaoFactory.getActiveUsers());
                 }
             }
         }

@@ -22,8 +22,6 @@ public class ChatsServlet extends HttpServlet {
         }
 
         req.setAttribute("basePath", basePath);
-
         req.getRequestDispatcher("/template/user/chats.jsp").forward(req, resp);
     }
-
 }

@@ -29,10 +29,5 @@
         </p>
         <p><input type="submit" value="Отправить"></p>
     </form>
-
-    <form action="${basePath}/api/message" method="get">
-            <p><input type="submit" value="Посмотреть входящие сообщения"></p>
-            <hr>
-        </form>
 </body>
 </html>

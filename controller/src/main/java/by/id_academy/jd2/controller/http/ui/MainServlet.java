@@ -21,7 +21,6 @@ public class MainServlet extends HttpServlet {
         }
 
         req.setAttribute("basePath", basePath);
-
         req.getRequestDispatcher("/template/index.jsp").forward(req, resp);
     }
 }

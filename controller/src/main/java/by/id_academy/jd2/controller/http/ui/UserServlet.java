@@ -21,7 +21,6 @@ public class UserServlet extends HttpServlet {
         }
 
         req.setAttribute("basePath", basePath);
-
         req.getRequestDispatcher("/template/signUp.jsp").forward(req, resp);
     }
 }

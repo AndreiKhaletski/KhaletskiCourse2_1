@@ -20,9 +20,6 @@ public class MessageServlet extends HttpServlet {
         }
 
         req.setAttribute("basePath", basePath);
-
         req.getRequestDispatcher("/template/user/message.jsp").forward(req, resp);
-
-
     }
 }
